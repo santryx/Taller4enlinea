@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Grid2D : MonoBehaviour
+public class Gamemanager : MonoBehaviour
 {
 
     int ancho = 10;
@@ -94,16 +94,12 @@ public class Grid2D : MonoBehaviour
                 if (turnoJugador == Color.red && jugador == true && ganador == false)
                 {
 
-                    Debug.LogError("El espacio pertenece al jugador 1");
-
                 }
                 else
                 {
 
                     if (turnoJugador == Color.blue && jugador == false)
                     {
-
-                        Debug.LogError("el espacio pertenece al jugador 2");
 
                     }
 
@@ -113,11 +109,15 @@ public class Grid2D : MonoBehaviour
 
         }
 
-        if (tiempo == 0)
+        if (tiempo == 0 && ganador == false)
         {
+
             empate = true;
-            tiempoDePartida = 0;
+
+           
         }
+
+
 
         if (ganador == true || empate == true)
 
@@ -127,24 +127,36 @@ public class Grid2D : MonoBehaviour
             {
 
                 ganador1_text.SetActive(true);
+                tiempoDePartida = 0;
+
+
+
+
             }
 
             if (ganador == true && turnoJugador == Color.blue)
             {
 
                 ganador2_text.SetActive(true);
+                tiempoDePartida = 0;
+
 
             }
+
             if (empate == true)
             {
 
                 empate_text.SetActive(true);
-
+                tiempoDePartida = 0;
             }
+
+
 
         }
 
     }
+
+    
 
     void Jugadores(Vector3 mPosition, int x, int y)
     {
@@ -209,7 +221,6 @@ public class Grid2D : MonoBehaviour
                 if (contador >= 4)
                 {
 
-                    Debug.Log("ganador horizontal");
                     return ganador = true;
 
                 }
@@ -277,7 +288,6 @@ public class Grid2D : MonoBehaviour
                 if (contador >= 4)
                 {
 
-                    Debug.Log("ganador diagonal1");
                     return ganador = true;
 
                 }
@@ -287,7 +297,7 @@ public class Grid2D : MonoBehaviour
 
         }
 
-        return false;
+        return  false;
 
     }
 
@@ -316,7 +326,6 @@ public class Grid2D : MonoBehaviour
                 if (contador >= 4)
                 {
 
-                    Debug.Log("ganador diagonal2");
                     return ganador = true;
 
                 }

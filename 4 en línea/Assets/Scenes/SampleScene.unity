@@ -664,7 +664,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.105939e-39, y: 4.90023e-40, z: 0, w: -0.000000011858135}
+  m_BoundingSphereOverride: {x: 4.5435787e+30, y: 1.3958761e+10, z: 8.0937406e+11,
+    w: 6.7406024e+22}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -988,7 +989,7 @@ MonoBehaviour:
   ganador1_text: {fileID: 827672803}
   ganador2_text: {fileID: 258675427}
   empate_text: {fileID: 308887014}
-  tiempoDePartida: 10
+  tiempoDePartida: 30
   temporalizadorText: {fileID: 2072118465}
 --- !u!4 &1345792561
 Transform:

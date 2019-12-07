@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class Gamemanager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
-    int ancho = 10;
-    int alto = 10;
-    public GameObject puzzle;
-    private GameObject[,] grid;
+    private int ancho = 10; // Rango de columnas
+    private int alto = 10; // Rango de filas 
+    public GameObject puzzle; // prefab que se va a duplicar
+    private GameObject[,] grid; // matriz
     bool jugador = false; //false = red, true = blue.
-    Color turnoempty;
-    Color turnoJugador;
-    bool ganador;
-    bool empate;
+    Color turnoempty; // Estado de las esferas en blanco
+    Color turnoJugador; // estado  que albergara el color del jugador 
+    bool ganador; // boleano que determina el ganador del juego
+    bool empate; // boleano que determina la regla de tiempo del juego y declara un empate (ambos pierden)
 
     //textos de la escena de jugadores
     public GameObject turnoJugador1_text;
@@ -36,7 +36,9 @@ public class Gamemanager : MonoBehaviour
         Setup();
       
     }
-
+ 
+    // funcion que crea esferas de color blanco desde el inicio de la escena. 
+    // ademas de desactivar los texto que no necesitan ser iniciados al principio de la escena.
     void Setup()
     {
 
@@ -156,8 +158,8 @@ public class Gamemanager : MonoBehaviour
 
     }
 
-    
 
+    // pintar las esferas dependiendo el turno del jugador en el lugar donde el mouse da click en la grid, siempre y cuando la esfera este en blanco.
     void Jugadores(Vector3 mPosition, int x, int y)
     {
 
@@ -173,12 +175,10 @@ public class Gamemanager : MonoBehaviour
 
                 GameObject gored = grid[x, y];
                 gored.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                turnoJugador = go.gameObject.GetComponent<Renderer>().material.color;
+                turnoJugador = gored.gameObject.GetComponent<Renderer>().material.color;
                 CambioDeJugador();
 
             }
-            else
-                CambioDeJugador();
 
         }
 
@@ -190,17 +190,18 @@ public class Gamemanager : MonoBehaviour
 
                 GameObject goblue = grid[x, y];
                 goblue.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-                turnoJugador = go.gameObject.GetComponent<Renderer>().material.color;
+                turnoJugador = goblue.gameObject.GetComponent<Renderer>().material.color;
                 CambioDeJugador();
 
             }
-            else
-                CambioDeJugador();
 
         }
 
     }
 
+    //Checkea horizontalmente si hay esferas del mismo color en cada turno, si es asi va aumentado el contador,en caso de que no encuentre colores
+    //consecutivos el contador reiniciara a 0 y retornara un bool false para que continue el siguiente turno, cuando el contador llegue a 4 retornara un bool verdarero indicando
+    //que hay un ganador.
     private bool CheckBoardHorizontal(int x, int y, Color turnoJugador)
     {
 
@@ -233,6 +234,9 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    //Checkea verticalmente si hay esferas del mismo color en cada turno, si es asi va aumentado el contador,en caso de que no encuentre colores
+    //consecutivos el contador reiniciara a 0 y retornara un bool false para que continue el siguiente turno, cuando el contador llegue a 4 retornara un bool verdarero indicando
+    //que hay un ganador.
     private bool CheckBoardVertical(int x, int y, Color turnoJugador)
     {
 
@@ -264,6 +268,9 @@ public class Gamemanager : MonoBehaviour
         return false;
     }
 
+    //Checkea diagonalmente hacia la derecha. si hay esferas del mismo color en cada turno, si es asi va aumentado el contador,en caso de que no encuentre colores
+    //consecutivos el contador reiniciara a 0 y retornara un bool false para que continue el siguiente turno, cuando el contador llegue a 4 retornara un bool verdarero indicando
+    //que hay un ganador.
     private bool CheckBoardDiagonal1(int x, int y, Color turnoJugador)
     {
 
@@ -301,6 +308,9 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    //Checkea diagonalmente hacia la izquierda. si hay esferas del mismo color en cada turno, si es asi va aumentado el contador,en caso de que no encuentre colores
+    //consecutivos el contador reiniciara a 0 y retornara un bool false para que continue el siguiente turno, cuando el contador llegue a 4 retornara un bool verdarero indicando
+    //que hay un ganador.
     private bool CheckBoardDiagonal2(int x, int y, Color turnoJugador)
     {
 
@@ -339,6 +349,7 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    // realiza el cambio de del varible jugador pasando de falso a verdareo y viceversa para que pueda generar los intercambios de turnos a cada jugador
     void CambioDeJugador()
     {
        
@@ -347,6 +358,7 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    // tiempo de ejecucion en la partida global, para que el temporizador reste x cantidad de tiempo de duracion de la partida
     void TiempoDeTurno()
     {
  
@@ -356,6 +368,7 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    // cambia los texto dentro de la escena según el turno del jugador 
     void TurnoDeTexto()
     {
 

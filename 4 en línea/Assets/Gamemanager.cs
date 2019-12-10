@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
         ganador2_text.SetActive(false);
         empate_text.SetActive(false);
 
-
         grid = new GameObject[ancho, alto];
 
         for (int x = 0; x < ancho; x++)
@@ -66,9 +65,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
-        
-
+ 
     }
 
     void Update()
@@ -116,7 +113,6 @@ public class GameManager : MonoBehaviour
 
             empate = true;
 
-           
         }
 
 
@@ -131,9 +127,6 @@ public class GameManager : MonoBehaviour
                 ganador1_text.SetActive(true);
                 tiempoDePartida = 0;
 
-
-
-
             }
 
             if (ganador == true && turnoJugador == Color.blue)
@@ -141,7 +134,6 @@ public class GameManager : MonoBehaviour
 
                 ganador2_text.SetActive(true);
                 tiempoDePartida = 0;
-
 
             }
 
@@ -151,8 +143,6 @@ public class GameManager : MonoBehaviour
                 empate_text.SetActive(true);
                 tiempoDePartida = 0;
             }
-
-
 
         }
 
@@ -262,10 +252,13 @@ public class GameManager : MonoBehaviour
                     return ganador = true;
 
                 }
+
             }
+
         }
 
         return false;
+
     }
 
     //Checkea diagonalmente hacia la derecha. si hay esferas del mismo color en cada turno, si es asi va aumentado el contador,en caso de que no encuentre colores
@@ -389,7 +382,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+   
 }
 
 
